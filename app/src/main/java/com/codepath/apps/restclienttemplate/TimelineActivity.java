@@ -63,7 +63,8 @@ public class TimelineActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.mvCompose) {
-            Toast.makeText(this, "Compose", Toast.LENGTH_SHORT).show();
+            Intent i = new Intent(this, ComposeActivity.class);
+            startActivity(i);
             return true;
         }
         return false;

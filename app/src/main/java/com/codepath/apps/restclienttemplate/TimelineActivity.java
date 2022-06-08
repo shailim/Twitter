@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.app.Activity;
 import android.app.Instrumentation;
@@ -41,6 +42,8 @@ public class TimelineActivity extends AppCompatActivity {
     RecyclerView rvTweets;
     List<Tweet> tweets;
     TweetsAdapter adapter;
+
+    private SwipeRefreshLayout swipeContainer;
 
     ActivityResultLauncher<Intent> resultLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
@@ -76,6 +79,31 @@ public class TimelineActivity extends AppCompatActivity {
         populateHomeTimeline();
         Log.i(TAG, "populated timeline");
 
+        swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                client.getHomeTimeline(new JsonHttpResponseHandler() {
+
+                    @Override
+                    public void onSuccess(int statusCode, Headers headers, JSON json) {
+                        adapter.clear();
+                        JSONArray jsonArray = json.jsonArray;
+                        try {
+                            adapter.addAll(Tweet.fromJsonArray(jsonArray));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        swipeContainer.setRefreshing(false);
+                    }
+
+                    @Override
+                    public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
+                        Log.e(TAG, "onFailure: " + response, throwable);
+                    }
+                });
+            }
+        });
     }
 
     @Override

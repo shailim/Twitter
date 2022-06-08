@@ -5,7 +5,6 @@
     android:id="@+id/swipeContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:visibility="visible"
     tools:context=".TimelineActivity">
 
     <androidx.recyclerview.widget.RecyclerView
@@ -23,4 +22,6 @@
         android:layout_marginEnd="5dp"
         android:onClick="onLogoutButton"
         android:text="Log Out" />
+
+
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

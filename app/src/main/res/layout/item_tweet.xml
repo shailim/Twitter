@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp">
+    android:layout_margin="5dp"
+    android:visibility="visible">
 
     <ImageView
         android:id="@+id/ivProfileImage"
@@ -29,4 +30,14 @@
         android:layout_marginTop="2dp"
         android:layout_toEndOf="@+id/ivProfileImage"
         tools:text="sample body" />
+
+    <ImageView
+        android:id="@+id/ivEmbedImage"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:layout_below="@+id/tvBody"
+        android:layout_alignLeft="@+id/ivProfileImage"
+        android:layout_marginTop="5dp"
+        android:visibility="gone"
+        tools:srcCompat="@tools:sample/avatars" />
 </RelativeLayout>

@@ -1,6 +1,9 @@
 package com.codepath.apps.restclienttemplate;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,10 +13,19 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
+
+import com.codepath.apps.restclienttemplate.models.Tweet;
+import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
+
+import org.json.JSONException;
+import org.parceler.Parcels;
+
+import okhttp3.Headers;
 
 public class ComposeTweetFragment extends DialogFragment implements TextView.OnEditorActionListener {
     private EditText et;
@@ -45,6 +57,10 @@ public class ComposeTweetFragment extends DialogFragment implements TextView.OnE
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         et = (EditText) view.findViewById(R.id.etCompose);
+
+        et.setImeOptions(EditorInfo.IME_ACTION_SEND);
+        et.setRawInputType(InputType.TYPE_CLASS_TEXT);
+
         String title = getArguments().getString("content", "");
         getDialog().setTitle(title);
         et.requestFocus();
@@ -64,4 +80,6 @@ public class ComposeTweetFragment extends DialogFragment implements TextView.OnE
             }
             return false;
         }
+
+
 }

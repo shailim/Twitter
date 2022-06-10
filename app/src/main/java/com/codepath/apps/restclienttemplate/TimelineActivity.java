@@ -7,6 +7,7 @@ import androidx.activity.result.contract.ActivityResultContract;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -104,9 +105,9 @@ public class TimelineActivity extends AppCompatActivity implements ComposeTweetF
         fabCompose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, ComposeActivity.class);
-                resultLauncher.launch(intent);
-                //showComposeDialog();
+                //Intent intent = new Intent(context, ComposeActivity.class);
+                //resultLauncher.launch(intent);
+                showComposeDialog();
             }
         });
 
@@ -237,6 +238,8 @@ public class TimelineActivity extends AppCompatActivity implements ComposeTweetF
 
     @Override
     public void onFinishedTweet(String inputText) {
+        Log.i(TAG, "onFinishedTweet");
+        Log.i(TAG, inputText);
         client.publishTweet(inputText, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Headers headers, JSON json) {
@@ -247,7 +250,6 @@ public class TimelineActivity extends AppCompatActivity implements ComposeTweetF
 //                    intent.putExtra("tweet", Parcels.wrap(tweet));
 //                    setResult(RESULT_OK);
 //                    finish();  //closes activity, passes data to parent
-
                     tweets.add(0, tweet);
                     adapter.notifyItemInserted(0);
                     rvTweets.smoothScrollToPosition(0);
@@ -265,15 +267,7 @@ public class TimelineActivity extends AppCompatActivity implements ComposeTweetF
 
     private void showComposeDialog() {
         FragmentManager fm = getSupportFragmentManager();
-        ComposeTweetFragment composeFrag = ComposeTweetFragment.newInstance("Some Title");
+        ComposeTweetFragment composeFrag = ComposeTweetFragment.newInstance("Compose Tweet");
         composeFrag.show(fm, "fragment_compose_tweet");
-
-        Button btnTweet = findViewById(R.id.btnTweet);
-        btnTweet.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //onFinishedTweet();
-            }
-        });
     }
 }

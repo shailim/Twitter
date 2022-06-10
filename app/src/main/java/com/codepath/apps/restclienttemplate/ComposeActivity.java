@@ -36,7 +36,7 @@ public class ComposeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_compose);
 
         etCompose = findViewById(R.id.etCompose);
-        btnTweet = findViewById(R.id.btnTweet);
+       // btnTweet = findViewById(R.id.btnTweet);
         client = TwitterApp.getRestClient(this);
 
         btnTweet.setOnClickListener(new View.OnClickListener() {

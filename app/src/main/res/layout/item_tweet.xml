@@ -28,7 +28,9 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="2dp"
         android:layout_toEndOf="@+id/ivProfileImage"
-        tools:text="sample body" />
+        tools:text="sample body"
+        android:autoLink="all"
+        android:linksClickable="true" />
 
     <ImageView
         android:id="@+id/ivEmbedImage"

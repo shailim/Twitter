@@ -14,6 +14,7 @@ public class Tweet {
     public String createdAt;
     public User user;
     public String imageUrl = "";
+    public long id;
 
     public Tweet() {}
 
@@ -26,6 +27,7 @@ public class Tweet {
         if (hasMedia) {
             tweet.imageUrl = jsonObject.getJSONObject("entities").getJSONArray("media").getJSONObject(0).getString("media_url_https");
         }
+        tweet.id = jsonObject.getLong("id");
         return tweet;
     }
 

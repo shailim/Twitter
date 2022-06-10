@@ -4,7 +4,7 @@
 
     <item
         android:id="@+id/progressBar"
-        android:orderInCategory="@integer/material_motion_duration_long_1"
+        android:orderInCategory="100"
         android:title="Loading..."
         android:visible="false"
         app:showAsAction="always"

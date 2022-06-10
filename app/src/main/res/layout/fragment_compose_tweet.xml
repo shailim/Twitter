@@ -1,20 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ComposeActivity">
+    android:id="@+id/fragmentCompose"
+    android:layout_width="wrap_content"
+    android:layout_gravity="center"
+    android:layout_height="wrap_content">
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textLayout"
+        android:id="@+id/textLayoutFrag"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:counterEnabled="true"
-        app:counterMaxLength="140">
+        app:counterMaxLength="140"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <EditText
-            android:id="@+id/etCompose"
+            android:id="@+id/etComposeFrag"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
@@ -27,20 +32,18 @@
             android:inputType="textMultiLine"
             android:minLines="5"
             tools:layout_editor_absoluteX="11dp"
-            tools:layout_editor_absoluteY="44dp"
-            android:imeOptions="actionSend"/>
+            tools:layout_editor_absoluteY="44dp" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/btnTweet"
+        android:id="@+id/btnTweetFrag"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textLayout"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="5dp"
-        android:text="@string/tweet" />
+        android:text="@string/tweet"
+        app:layout_constraintEnd_toEndOf="@+id/textLayout"
+        app:layout_constraintTop_toBottomOf="@+id/textLayout" />
 
-
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

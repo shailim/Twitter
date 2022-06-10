@@ -34,7 +34,6 @@ public class ComposeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_compose);
-        showComposeDialog();
 
         etCompose = findViewById(R.id.etCompose);
         btnTweet = findViewById(R.id.btnTweet);
@@ -75,11 +74,5 @@ public class ComposeActivity extends AppCompatActivity {
                 });
             }
         });
-    }
-
-    private void showComposeDialog() {
-        FragmentManager fm = getSupportFragmentManager();
-        ComposeTweetFragment composeFrag = ComposeTweetFragment.newInstance("Some Title");
-        composeFrag.show(fm, "fragment_compose_tweet");
     }
 }

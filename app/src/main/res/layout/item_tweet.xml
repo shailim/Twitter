@@ -4,7 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp">
+    android:layout_margin="5dp"
+    android:layout_marginRight="20dp"
+    android:paddingStart="5dp"
+    android:paddingLeft="10dp"
+    android:paddingTop="10dp"
+    android:paddingEnd="5dp"
+    android:paddingRight="10dp"
+    android:paddingBottom="10dp">
 
     <ImageView
         android:id="@+id/ivProfileImage"
@@ -16,8 +23,8 @@
         android:id="@+id/tvScreenName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_toEndOf="@+id/ivProfileImage"
+        android:layout_marginStart="10dp"
+        android:layout_toEndOf="@+id/tvName"
         tools:text="username897" />
 
     <TextView
@@ -25,12 +32,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvScreenName"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="2dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
         android:layout_toEndOf="@+id/ivProfileImage"
-        tools:text="sample body"
         android:autoLink="all"
-        android:linksClickable="true" />
+        android:linksClickable="true"
+        tools:text="sample body" />
 
     <ImageView
         android:id="@+id/ivEmbedImage"
@@ -38,7 +45,23 @@
         android:layout_height="200dp"
         android:layout_below="@+id/tvBody"
         android:layout_alignLeft="@+id/ivProfileImage"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="8dp"
         android:visibility="gone"
         tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/tvIdNum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="5dp" />
+
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_toEndOf="@+id/ivProfileImage"
+        android:textStyle="bold"
+        tools:text="Name" />
 </RelativeLayout>

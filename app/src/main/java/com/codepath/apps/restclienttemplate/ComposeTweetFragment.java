@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -50,18 +51,17 @@ public class ComposeTweetFragment extends DialogFragment implements TextView.OnE
         getDialog().getWindow().setSoftInputMode(
                 WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE
         );
-
         et.setOnEditorActionListener(this);
     }
 
-    @Override
-    public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-        if (EditorInfo.IME_ACTION_SEND == actionId) {
-            ComposeTweetListener listener = (ComposeTweetListener) getActivity();
-            listener.onFinishedTweet(et.getText().toString());
-            dismiss();
-            return true;
+        @Override
+        public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+            if (EditorInfo.IME_ACTION_SEND == actionId) {
+                ComposeTweetListener listener = (ComposeTweetListener) getActivity();
+                listener.onFinishedTweet(et.getText().toString());
+                dismiss();
+                return true;
+            }
+            return false;
         }
-        return false;
-    }
 }

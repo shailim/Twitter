@@ -57,6 +57,8 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         TextView tvBody;
         TextView tvScreenName;
         ImageView ivEmbedImage;
+        TextView tvIdNum;
+        TextView tvName;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -64,16 +66,21 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             tvBody = itemView.findViewById(R.id.tvBody);
             tvScreenName = itemView.findViewById(R.id.tvScreenName);
             ivEmbedImage = itemView.findViewById(R.id.ivEmbedImage);
+            tvIdNum = itemView.findViewById(R.id.tvIdNum);
+            tvName = itemView.findViewById(R.id.tvName);
         }
 
         public void bind(Tweet tweet) {
             tvBody.setText(tweet.body);
-            tvScreenName.setText(tweet.user.screenName);
+            tvScreenName.setText("@" + tweet.user.screenName);
+            tvName.setText(tweet.user.name);
             Glide.with(context)
                     .load(tweet.user.profileImageUrl)
+                    .circleCrop()
                     .placeholder(R.drawable.placeholder)
                     .error(R.drawable.placeholder)
                     .into(ivProfileImage);
+            ivEmbedImage.setVisibility(View.GONE);
             if (tweet.imageUrl.length() > 0) {
                 Glide.with(context)
                         .load(tweet.imageUrl)
@@ -82,6 +89,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
                         .into(ivEmbedImage);
                 ivEmbedImage.setVisibility(View.VISIBLE);
             }
+            tvIdNum.setText("" + tweet.createdAt);
         }
     }
 
